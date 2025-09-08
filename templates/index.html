@@ -1,0 +1,42 @@
+<!doctype html>
+<title>Matrix Ticker</title>
+<h1>Matrix Ticker</h1>
+
+<h2>Tickers</h2>
+<form method="post" action="/add_ticker">
+  <input name="symbol" placeholder="Symbol">
+  <select name="type">
+    <option value="stock">Stock</option>
+    <option value="crypto">Crypto</option>
+  </select>
+  <button type="submit">Add</button>
+</form>
+<ul>
+  {% for sym in tickers.stocks %}
+    <li>{{ sym }} (stock) <a href="/remove_ticker?symbol={{ sym }}">remove</a></li>
+  {% endfor %}
+  {% for sym in tickers.crypto %}
+    <li>{{ sym }} (crypto) <a href="/remove_ticker?symbol={{ sym }}">remove</a></li>
+  {% endfor %}
+</ul>
+
+<h2>News Feed</h2>
+<form method="post" action="/set_news">
+  <input name="feed_url" value="{{ feed_url or '' }}" placeholder="RSS feed URL">
+  <button type="submit">Set Feed</button>
+</form>
+
+<h2>Brightness</h2>
+<form method="post" action="/brightness">
+  <input type="number" name="value" min="0" max="100" value="{{ brightness }}">
+  <button type="submit">Set Brightness</button>
+</form>
+
+<h2>Change Password</h2>
+<form method="post" action="/change_password">
+  <input type="password" name="current_password" placeholder="Current Password">
+  <input type="password" name="new_password" placeholder="New Password">
+  <button type="submit">Change</button>
+</form>
+
+<p><a href="/logout">Logout</a></p>

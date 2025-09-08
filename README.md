@@ -5,6 +5,11 @@ This project drives two chained 64x32 RGB LED matrix panels (total size
 with configurable stock and cryptocurrency ticker symbols and headlines
 from an RSS news feed.
 
+A small Flask web application provides a password protected web
+interface (default ``admin:admin``) to manage the list of symbols,
+configure the news feed, adjust brightness and change the password.
+
+
 A small Flask web application exposes endpoints to manage the list of
 symbols and to configure the news feed.
 
@@ -18,7 +23,11 @@ symbols and to configure the news feed.
    ```bash
    python app.py
    ```
-3. Interact with the HTTP API, for example:
+3. Open `http://<raspberrypi>:8000/` and log in with the default
+   credentials.  From there you can add/remove tickers, set the RSS feed,
+   adjust brightness and change the password.
+
+4. Interact with the HTTP API, for example:
    * `POST /tickers` with JSON `{"symbol": "AAPL", "type": "stock"}` to add a stock.
    * `POST /tickers` with JSON `{"symbol": "btc", "type": "crypto"}` to add a crypto currency.
    * `DELETE /tickers/AAPL` to remove a symbol.
