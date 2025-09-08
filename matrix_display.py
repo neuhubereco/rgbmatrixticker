@@ -12,7 +12,13 @@ import logging
 from typing import Optional
 
 try:  # pragma: no cover - hardware library may not be installed
-    from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
+    try:
+    try:
+    from rgbmatrix import RGBMatrix, RGBMatrixOptions
+except ImportError:
+    from .rgbmatrix_fallback import RGBMatrix, RGBMatrixOptions, graphics
+except ImportError:
+    from .rgbmatrix_fallback import RGBMatrix, RGBMatrixOptions, graphics
 except Exception:  # pragma: no cover
     RGBMatrix = None  # type: ignore
     RGBMatrixOptions = None  # type: ignore
