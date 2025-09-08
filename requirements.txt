@@ -1,0 +1,6 @@
+flask
+werkzeug
+requests
+feedparser
+yfinance
+rgbmatrix
